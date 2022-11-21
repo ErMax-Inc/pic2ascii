@@ -56,7 +56,7 @@ from threading import Thread
 import picgen
 import psutil
 from more import isInt, isFloat
-
+from playsound import playsound
 #call_atrib and call_error (fine imports)
 from tkinter.filedialog import askdirectory as askdir
 from tkinter.filedialog import askopenfilenames, askopenfilename
@@ -1757,7 +1757,14 @@ class pta:
         return charArray[math.floor(inputInt*interval)]
     
     
+    '''
+    The pbud function is in charge of what happens durring the processes.
     
+    You can use ps_list to access the processes inside doing the hard pic2ascii backed work.
+
+    Whatever you put in the first if statement will be executed on stop (please remember this and don't create other dumb work arounds as it's already a mess)
+
+    '''
     def pbud(self, len_file_path_list, progress, ps_list):
         global stop_pressed
         #############
@@ -1766,7 +1773,7 @@ class pta:
         ###########
         #please change this so the loop stops when all the processes stop
         while True:
-            #print(stop_pressed)
+            
             if stop_pressed == True:
                 for ps_in_ps_list in ps_list:
                     ps_in_ps_list.terminate()
@@ -1774,7 +1781,9 @@ class pta:
                 ui.progressBar_2.setValue(0)
                 ui.progressBar_3.setValue(0)
                 ui.progressBar_4.setValue(0)
-                print("works")
+                playsound(f"sounds{os.sep}stop.wav", True)
+                #print("\a")
+                print("stopped_processes")
                 break
             #    break
             elif len_file_path_list == progress.value:
@@ -1784,15 +1793,16 @@ class pta:
                 ui.progressBar_4.setValue(100)
                 for i in range(5):
                     sleep(.1)
-                    ui.progressBar.setValue(0)
-                    ui.progressBar_2.setValue(0)
-                    ui.progressBar_3.setValue(0)
-                    ui.progressBar_4.setValue(0)
+                    ui.progressBar.setDisabled(True)
+                    ui.progressBar_2.setDisabled(True)
+                    ui.progressBar_3.setDisabled(True)
+                    ui.progressBar_4.setDisabled(True)
                     sleep(.1)
-                    ui.progressBar.setValue(100)
-                    ui.progressBar_2.setValue(100)
-                    ui.progressBar_3.setValue(100)
-                    ui.progressBar_4.setValue(100)
+                    ui.progressBar.setEnabled(True)
+                    ui.progressBar_2.setEnabled(True)
+                    ui.progressBar_3.setEnabled(True)
+                    ui.progressBar_4.setEnabled(True)
+                playsound(f"sounds{os.sep}done.wav", True)
                 break
             else:
                 #print(str(math.floor(float(progress.value / len_file_path_list) * 100)))
@@ -1938,7 +1948,7 @@ class pta:
     def pg(self):
         if __name__ == '__main__':
             #in the future, please use the commeted forloop
-            #call_exiting.stathide()     we will comment this out untill we can get a reliable way of un hiding
+            #call_exiting.stathide()     we will comment this out untill we can get a reliable way of un hiding            
             call_enable_disable.no_click()
             ui.progressBar.setValue(0)
             ui.progressBar_2.setValue(0)
@@ -1963,6 +1973,7 @@ class pta:
                 #I did some reaserch and figured out that .join() is for allready (not in function) tasks
             o = Thread(target=self.pbud, args=(len(file_path_list), progress, ps_list))
             o.start()
+            playsound(f"sounds{os.sep}stop.wav", True)
 
     def stopping_pic(self):
         global stop_pressed
