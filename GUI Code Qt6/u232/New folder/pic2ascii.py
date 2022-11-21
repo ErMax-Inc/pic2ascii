@@ -1431,7 +1431,7 @@ class atrib(Ui_MainWindow):
         fileman.attributes('-alpha', 0)
         global file_path_list
         
-        file_path_list = askopenfilenames(filetypes=(("JPEG/JPG files","*.jpeg *.jpg"),), title='Select All Pictures to Ascii.')
+        file_path_list = askopenfilenames(filetypes=(("JPEG/JPG files","*.jpeg *.jpg *.jfif"),), title='Select All Pictures to Ascii.')
         file_path_list = list(file_path_list)
 
         fileman.deiconify()
@@ -1758,7 +1758,7 @@ class pta:
     
     
     
-    def pbud(self, len_file_path_list, progress):
+    def pbud(self, len_file_path_list, progress, ps_list):
         global stop_pressed
         #############
         ############
@@ -1768,18 +1768,31 @@ class pta:
         while True:
             #print(stop_pressed)
             if stop_pressed == True:
-                pass
+                for ps_in_ps_list in ps_list:
+                    ps_in_ps_list.terminate()
+                ui.progressBar.setValue(0)
+                ui.progressBar_2.setValue(0)
+                ui.progressBar_3.setValue(0)
+                ui.progressBar_4.setValue(0)
+                print("works")
+                break
             #    break
             elif len_file_path_list == progress.value:
                 ui.progressBar.setValue(100)
                 ui.progressBar_2.setValue(100)
                 ui.progressBar_3.setValue(100)
                 ui.progressBar_4.setValue(100)
-                sleep(1)
-                ui.progressBar.setValue(0)
-                ui.progressBar_2.setValue(0)
-                ui.progressBar_3.setValue(0)
-                ui.progressBar_4.setValue(0)
+                for i in range(5):
+                    sleep(.1)
+                    ui.progressBar.setValue(0)
+                    ui.progressBar_2.setValue(0)
+                    ui.progressBar_3.setValue(0)
+                    ui.progressBar_4.setValue(0)
+                    sleep(.1)
+                    ui.progressBar.setValue(100)
+                    ui.progressBar_2.setValue(100)
+                    ui.progressBar_3.setValue(100)
+                    ui.progressBar_4.setValue(100)
                 break
             else:
                 #print(str(math.floor(float(progress.value / len_file_path_list) * 100)))
@@ -1791,7 +1804,7 @@ class pta:
                 ui.progressBar_4.setValue(int(math.floor(float(progress.value / len_file_path_list) * 100)))
     
             
-    def main(self, execing, file_path_list, folder_out_path, pre_fnt, scaleFactor, processes, monochrome, progress, stp_prsd, lock):
+    def main(self, execing, file_path_list, folder_out_path, pre_fnt, scaleFactor, processes, monochrome, progress, lock):
         import asyncio
         #chars = '''$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'. '''[::-1]
         chars = str(ui.lineEditChar.text())
@@ -1802,15 +1815,15 @@ class pta:
         oneCharWidth = 10
         oneCharHeight = 18
         
-        async def chikr():
-            while True:
-                with lock:
-                    if bool(stp_prsd.value):
-                        print(stp_prsd.value)
-                        print(bool(stp_prsd.value))
-                        print('stopped')
-                        exit()
-        asyncio.run(chikr())
+        #async def chikr():
+        #    while True:
+        #        with lock:
+        #            if bool(stp_prsd.value):
+        #                print(stp_prsd.value)
+        #                print(bool(stp_prsd.value))
+        #                print('stopped')
+        #                exit()
+        #asyncio.run(chikr())
         #
         if float(ui.lineEditSF.text()) != float(ui.spinDialScaleFactor.value() / 100):
             print(float(ui.lineEditSF.text()))
@@ -1848,7 +1861,7 @@ class pta:
             else:
                 format = 'RGB'
             #print(str(os.getcwd() + os.sep() + 'font' + os.sep() + 'anonymouspro.ttf'))
-            fnt = ImageFont.truetype(str('C:\Windows\Fonts\ARIAL.ttf'), 15)
+            fnt = ImageFont.truetype(str('C:\\Windows\\Fonts\\arial.ttf'), 15)
 
             width, height = im.size
             im = im.resize((int(scaleFactor*width), int(scaleFactor*height*(oneCharWidth/oneCharHeight))), PIL.Image.NEAREST)
@@ -1871,7 +1884,7 @@ class pta:
             
             for i in range(height):
                 for j in range(width):
-                    #print(i)
+                    print(i)
                     if format == 'RGBA':
                         r, g, b, a = pix.getpixel((j, i))
                     elif format == 'RGB':
@@ -1931,22 +1944,24 @@ class pta:
             ui.progressBar_2.setValue(0)
             ui.progressBar_3.setValue(0)
             ui.progressBar_4.setValue(0)
+            ps_list=[]
             global stop_pressed
             stop_pressed = False
             picgen.lols(list(file_path_list), int(processes))
             progress = Value('i', 0)
-            stp_prsd = Value('i', int(stop_pressed))
+            #stp_prsd = Value('i', int(stop_pressed))
             lock = Lock()
             for execing in range(int(processes)):
-            #for execing in range(int(1)):
+                #for execing in range(int(1)):
                 with open(str(os.getcwd()) + str(os.sep) + 'pic2asciitemp' + str(os.sep) + str(int(execing + 1)) + str(os.sep) + 'tmp.json', 'r') as dumpclutchprocs:
                     file_path_list2 = json.load(dumpclutchprocs)
                 del dumpclutchprocs
-                pta_ps = Process(target=self.main, args=(int(execing), list(file_path_list2), str(folder_out_path), str(pre_fnt), float(str(ui.lineEditSF.text())), int(processes), bool(ui.commandLinkButton.isChecked()), progress, stp_prsd, lock))
+                pta_ps = Process(target=self.main, args=(int(execing), list(file_path_list2), str(folder_out_path), str(pre_fnt), float(str(ui.lineEditSF.text())), int(processes), bool(ui.commandLinkButton.isChecked()), progress, lock))
                 #pta_ps = Process(target=self.main(int(execing), list(file_path_list2), str(folder_out_path), str(pre_fnt), float(str(ui.lineEditSF.text())), int(processes), bool(ui.commandLinkButton.isChecked()), iteral))
+                ps_list.append(pta_ps)
                 pta_ps.start()
                 #I did some reaserch and figured out that .join() is for allready (not in function) tasks
-            o = Thread(target=self.pbud, args=(len(file_path_list), progress))
+            o = Thread(target=self.pbud, args=(len(file_path_list), progress, ps_list))
             o.start()
 
     def stopping_pic(self):
