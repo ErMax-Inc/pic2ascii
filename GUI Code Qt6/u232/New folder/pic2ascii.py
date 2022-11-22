@@ -1857,6 +1857,9 @@ class enable_disable:
         ui.lineEditProcess.setEnabled(True)
         ui.checkBoxAutoProcess.setEnabled(True)
 
+    commandShow = lambda self:ui.tabWidget_2.setEnabled(True)
+    commandHide = lambda self:ui.tabWidget_2.setDisabled(True)
+
 ########################################################
 
 #########################################################
