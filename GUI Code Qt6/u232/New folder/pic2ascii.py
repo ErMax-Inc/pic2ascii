@@ -1431,6 +1431,7 @@ class Ui_MainWindow(object):
         self.spinDialScaleFactor.valueChanged.connect(lambda:call_atrib.dialSF())
         self.lineEditSF.textChanged.connect(lambda:call_atrib.editSF())
         self.actionReport_an_Erorr.triggered.connect(lambda:self.win_browser())
+        self.actionExit.triggered.connect(lambda:call_exiting.file_exit())
         self.start.clicked.connect(lambda:call_pta.pg())
         self.lineEditProcess.textChanged.connect(lambda:call_atrib.EditProcesses())
         self.checkBoxAutoProcess.stateChanged.connect(lambda:call_atrib.autobutton())
@@ -1767,63 +1768,6 @@ class atrib(Ui_MainWindow):
 
 ################################################################################
 
-class error:
-    #Note:
-    #This class is probably the least maintained class of them all
-    #
-    def invalid_dir(self, x):
-        root = Tk()
-        root.eval('tk::PlaceWindow %s center' % root.winfo_toplevel())
-        root.withdraw()
-        root.attributes('-alpha', 0)
-
-        messagebox.showerror('Invalid Directory', str('For Some Reason The Directory \'%s\' is invalid' % x))
-
-        root.deiconify()
-        root.destroy()
-        root.quit()
-        del root
-    
-    def invalid_img_type(self):
-        root = Tk()
-        root.eval('tk::PlaceWindow %s center' % root.winfo_toplevel())
-        root.withdraw()
-        root.attributes('-alpha', 0)
-
-        messagebox.showerror('Not suppored Image type', str('This image type is not valid!\nThe only valid image types are .jpg and .jpeg'))
-
-        root.deiconify()
-        root.destroy()
-        root.quit()
-        del root
-
-    def report_error(self):
-        #fix this later
-        root = Tk()
-        root.eval('tk::PlaceWindow %s center' % root.winfo_toplevel())
-        root.withdraw()
-        root.attributes('-alpha', 0)
-
-        messagebox.askquestion(title='Web Browser Error', message=str('For some reason your web browser could not load!'))
-
-        root.deiconify()
-        root.destroy()
-        root.quit()
-        del root
-
-    def sf_error(self):
-        root = Tk()
-        root.eval('tk::PlaceWindow %s center' % root.winfo_toplevel())
-        root.withdraw()
-        root.attributes('-alpha', 0)
-
-        messagebox.showerror('SF_Error', 'dial and line are not equal!')
-
-        root.deiconify()
-        root.destroy()
-        root.quit()
-        del root
-
 class exiting:
     def message(self):
         root = Tk()
@@ -1847,6 +1791,9 @@ class exiting:
             del root
             return False
     
+    def file_exit(self):
+        if self.message():
+            exit()
 
 
 class enable_disable:
@@ -2131,7 +2078,6 @@ class pta:
 #class debunks
 call_enable_disable = enable_disable()
 call_atrib = atrib()
-call_error = error()
 call_dtet = dtet()
 call_actions = actions()
 call_exiting = exiting()
