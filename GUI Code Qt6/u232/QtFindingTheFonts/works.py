@@ -47,6 +47,7 @@ def your():
         x = QtGui.QFont(font["name"].getDebugName(1))
         ui.fontComboBox.setFont(x)
 
+
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)

@@ -28,7 +28,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtWidgets import QWidget, QApplication
 from PyQt6.QtGui import QFocusEvent
 import webbrowser
-import sys, colorsys, shutil, reis
+import sys, colorsys, shutil, reis, pathlib
 from matplotlib import font_manager
 #from tqdm import tqdm
 #pta class imports (fine imports)
@@ -1473,10 +1473,27 @@ class Ui_MainWindow(object):
         self.lineEditAVal_2.textChanged.connect(lambda:call_atrib.lineChangeHSL(self.lineEditAVal_2, self.verticalSliderA_2))
 
     def remove_bad_font(self):
-        list_of_font_index=[]
+        list_of_font_index={}
         x=0
         while self.fontComboBox.itemText(x) != '':
-            print(self.fontComboBox.itemData(x))
+            try: font_manager.findfont(self.fontComboBox.itemText(x))
+            except:self.fontComboBox.removeItem(x)
+            else:
+                if font_manager.findfont(self.fontComboBox.itemText(x))[-14:].lower().rfind("dejavusans") != -1 and self.fontComboBox.itemText(x).lower().find("dejavusans"):
+                    #if self.fontComboBox.itemText(x)
+                    print(pathlib.Path(font_manager.findfont(self.fontComboBox.itemText(x))).parts[-1])
+
+
+                    start working here, we need a thing that allows us to see if the troubbled fonts include a semi light or light or bold or whatever
+                    we can see if there is a font file like that somewhere in the directory. if not then just remove it from the combo box.
+
+
+                    I didn't put this in a comment because I wanted the program to error out so you know what to work on next.
+
+                    If you comment out these lines, the program should work fine (at least the stuff that is coded for)
+
+
+                    #if self.fontComboBox.itemText(x).rfind()
             #list_of_font_index.append(self.fontComboBox.itemText(x))
             x += 1
 
