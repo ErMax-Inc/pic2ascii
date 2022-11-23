@@ -2,6 +2,7 @@ from PyQt6 import QtGui, QtWidgets, QtCore
 import os
 #import matplotlib.font_manager as font_manager
 from matplotlib import font_manager
+from fontTools import ttLib
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -12,6 +13,11 @@ class Ui_MainWindow(object):
         self.fontComboBox = QtWidgets.QFontComboBox(self.centralwidget)
         self.fontComboBox.setGeometry(QtCore.QRect(210, 220, 338, 32))
         self.fontComboBox.setObjectName("fontComboBox")
+        self.text = QtWidgets.QLineEdit(self.centralwidget)
+        self.text.setGeometry(QtCore.QRect(300, 310, 398, 48))
+        self.text.setObjectName("yourmom")
+        self.text.setText("uuouo")
+        self.text.setFont(QtGui.QFont(font_manager.findfont(ui.fontComboBox.currentFont().family())))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 30))
@@ -31,7 +37,15 @@ class Ui_MainWindow(object):
     
         self.fontComboBox.currentFontChanged.connect(lambda:your())
 def your():
-    print(font_manager.findfont(ui.fontComboBox.currentFont().family()))
+    if ui.fontComboBox.currentFont().family().find("-") == -1:
+        print(ui.fontComboBox.currentFont().family())
+        w = font_manager.findfont(ui.fontComboBox.currentFont().family())
+        print(w)
+        font = ttLib.TTFont(w)
+        print(font["name"].getDebugName(4))
+        print(font["name"].getDebugName(1))
+        x = QtGui.QFont(font["name"].getDebugName(1))
+        ui.fontComboBox.setFont(x)
 
 if __name__ == "__main__":
     import sys

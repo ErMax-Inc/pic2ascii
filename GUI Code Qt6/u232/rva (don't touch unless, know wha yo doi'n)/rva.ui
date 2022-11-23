@@ -149,9 +149,6 @@
      <property name="autoFillBackground">
       <bool>false</bool>
      </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(250, 250, 250);</string>
-     </property>
      <attribute name="title">
       <string>Home</string>
      </attribute>
@@ -358,10 +355,6 @@ p, li { white-space: pre-wrap; }
         <stylestrategy>PreferDefault</stylestrategy>
         <kerning>true</kerning>
        </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(240, 240, 240);
-selection-background-color: rgb(204, 204, 204);</string>
       </property>
       <property name="text">
        <string>Setup</string>
@@ -741,81 +734,6 @@ selection-background-color: rgb(204, 204, 204);</string>
        <enum>Qt::Horizontal</enum>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEditFont">
-      <property name="geometry">
-       <rect>
-        <x>185</x>
-        <y>205</y>
-        <width>186</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="toolTip">
-       <string>The Font of The Ascii Charaters</string>
-      </property>
-      <property name="toolTipDuration">
-       <number>0</number>
-      </property>
-      <property name="statusTip">
-       <string>The Font of The Ascii Charaters</string>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(245, 245, 245);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButtonFontIn">
-      <property name="geometry">
-       <rect>
-        <x>375</x>
-        <y>205</y>
-        <width>116</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Browse Font File</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="Fontlabel">
-      <property name="geometry">
-       <rect>
-        <x>120</x>
-        <y>205</y>
-        <width>61</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-        <weight>50</weight>
-        <italic>false</italic>
-        <bold>false</bold>
-        <stylestrategy>PreferAntialias</stylestrategy>
-       </font>
-      </property>
-      <property name="toolTip">
-       <string>The Font of The Ascii Charaters</string>
-      </property>
-      <property name="toolTipDuration">
-       <number>0</number>
-      </property>
-      <property name="statusTip">
-       <string>The Font of The Ascii Charaters</string>
-      </property>
-      <property name="text">
-       <string>Font:</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="lineEdit">
       <property name="geometry">
        <rect>
@@ -1191,6 +1109,140 @@ selection-background-color: rgb(204, 204, 204);</string>
        <string>↺</string>
       </property>
      </widget>
+     <widget class="QTabWidget" name="fontTabWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>180</y>
+        <width>381</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="tabFont">
+       <attribute name="title">
+        <string>Font Menu</string>
+       </attribute>
+       <widget class="QFontComboBox" name="fontComboBox">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>371</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+          <weight>50</weight>
+          <bold>false</bold>
+          <stylestrategy>PreferDefault</stylestrategy>
+         </font>
+        </property>
+        <property name="editable">
+         <bool>false</bool>
+        </property>
+        <property name="currentText">
+         <string>Arial</string>
+        </property>
+        <property name="currentFont">
+         <font>
+          <family>Arial</family>
+         </font>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tabCustomFont">
+       <attribute name="title">
+        <string>Font Path</string>
+       </attribute>
+       <widget class="QLabel" name="Fontlabel">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>10</y>
+          <width>61</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+          <stylestrategy>PreferAntialias</stylestrategy>
+         </font>
+        </property>
+        <property name="toolTip">
+         <string>The Font of The Ascii Charaters</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>0</number>
+        </property>
+        <property name="statusTip">
+         <string>The Font of The Ascii Charaters</string>
+        </property>
+        <property name="text">
+         <string>Font:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEditFont">
+        <property name="geometry">
+         <rect>
+          <x>60</x>
+          <y>10</y>
+          <width>186</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="toolTip">
+         <string>The Font of The Ascii Charaters</string>
+        </property>
+        <property name="toolTipDuration">
+         <number>0</number>
+        </property>
+        <property name="statusTip">
+         <string>The Font of The Ascii Charaters</string>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(245, 245, 245);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButtonFontIn">
+        <property name="geometry">
+         <rect>
+          <x>255</x>
+          <y>10</y>
+          <width>116</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Browse Font File</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <zorder>fontTabWidget</zorder>
      <zorder>lineEdit_2</zorder>
      <zorder>lineEdit</zorder>
      <zorder>labelinDesk</zorder>
@@ -1205,9 +1257,6 @@ selection-background-color: rgb(204, 204, 204);</string>
      <zorder>lineEditSF</zorder>
      <zorder>labelSF</zorder>
      <zorder>line</zorder>
-     <zorder>lineEditFont</zorder>
-     <zorder>pushButtonFontIn</zorder>
-     <zorder>Fontlabel</zorder>
      <zorder>coreLabel</zorder>
      <zorder>checkBoxAutoProcess</zorder>
      <zorder>lineEditProcess</zorder>
