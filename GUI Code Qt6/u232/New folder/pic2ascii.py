@@ -1484,13 +1484,13 @@ class Ui_MainWindow(object):
                     print(pathlib.Path(font_manager.findfont(self.fontComboBox.itemText(x))).parts[-1])
 
 
-                    start working here, we need a thing that allows us to see if the troubbled fonts include a semi light or light or bold or whatever
-                    we can see if there is a font file like that somewhere in the directory. if not then just remove it from the combo box.
-
-
-                    I didn't put this in a comment because I wanted the program to error out so you know what to work on next.
-
-                    If you comment out these lines, the program should work fine (at least the stuff that is coded for)
+                    # start working here, we need a thing that allows us to see if the troubbled fonts include a semi light or light or bold or whatever
+                    # we can see if there is a font file like that somewhere in the directory. if not then just remove it from the combo box.
+                    #
+                    #
+                    # I didn't put this in a comment because I wanted the program to error out so you know what to work on next.
+                    #
+                    # If you comment out these lines, the program should work fine (at least the stuff that is coded for)
 
 
                     #if self.fontComboBox.itemText(x).rfind()
@@ -1526,7 +1526,7 @@ ui.setupUi(MainWindow)
 class autostart:
     def auto(self):
         ui.checkBoxAutoProcess.setChecked(True)
-        ui.remove_bad_font()
+        #ui.remove_bad_font()
     def setup(self):
         ui.tabWidget.setCurrentWidget(ui.tabSetup)
 
@@ -1548,10 +1548,7 @@ class dtet():
 
 class actions:
     def gt2(self):
-        try:
-            webbrowser.open('https://gitlab.com/ermax-inc/pic2ascii/-/issues/new')
-        except:
-            call_error.report_error()
+        webbrowser.open('https://gitlab.com/ermax-inc/pic2ascii/-/issues/new')
     
     
     def GitHub(self):
