@@ -63,19 +63,25 @@ from tkinter import messagebox
 
 from sty import fg
 
+
+from fclist import fclist
+
+'''
+IMPORTANT: when using fclist install the fclist-cffi package as it is maintained 
+'''
+
 #this one is only used for 2 methods
 import decimal
 #global sys var
 
-#def winslash():
-#    if int(os.name.lower().find('nt')) != int(-1):
-#        fwinslash = str('\\')
-#    else:
-#        fwinslash = str('/')
-#    return fwinslash
+'''
+Dependencies: 
+
+Linux: fontconfig
+'''
 
 
-#to prevent the worst, app is here insted of the if statment
+#to prevent the worst, app is here instead of the if statement
 app = QtWidgets.QApplication(sys.argv)
 
 #default value for processes for now
@@ -1476,12 +1482,42 @@ class Ui_MainWindow(object):
         list_of_font_index={}
         x=0
         while self.fontComboBox.itemText(x) != '':
-            try: font_manager.findfont(self.fontComboBox.itemText(x))
-            except:self.fontComboBox.removeItem(x)
+            try:new_font = font_manager.findfont(self.fontComboBox.itemText(x))
+            except:
+                self.fontComboBox.removeItem(x)
+                continue
             else:
-                if font_manager.findfont(self.fontComboBox.itemText(x))[-14:].lower().rfind("dejavusans") != -1 and self.fontComboBox.itemText(x).lower().find("dejavusans"):
+                if font_manager.findfont(self.fontComboBox.itemText(x), rebuild_if_missing=False)[-14:].lower().rfind("dejavusans") != -1 and self.fontComboBox.itemText(x).lower().find("dejavusans") == -1:
+                    if os.name == 'posix':  #fclist is not a windows so put all of the `fclist` stuff in here
+                        print([pathlib.Path(x.file).parts[-1] for x in tuple(fclist(fontformat=self.fontComboBox.itemText(x)))])#pathlib.Path(tuple(fclist(family=self.fontComboBox.itemText(x)))[0].file).parts[-1:])
+                        print([pathlib.Path(x.file).parts[-1] for x in tuple(fclist(family=self.fontComboBox.itemText(x)))])
+                        if not tuple(fclist(fullname=self.fontComboBox.itemText(x))):
+                            if not tuple(fclist(family=self.fontComboBox.itemText(x))):
+                                ui.fontComboBox.removeItem(x)
+                                continue
+                            else:
+                                for filei in fclist(family=self.fontComboBox.itemText(x)):
+                                    pass
+                                    
+                                    #guess here we would find which font is the best fitting
+                                    #if pathlib.Path(filei.family).parts[:-1].find
+                        else:
+                            try:ImageFont.truetype(tuple(fclist(fullname=self.fontComboBox.itemText(x)))[0].file, 15)
+                            except:new_font = tuple(fclist(fullname=self.fontComboBox.itemText(x)))[-1].file
+                            else:new_font = tuple(fclist(fullname=self.fontComboBox.itemText(x)))[0].file
+                            #use the [-1] index for appending to list
+            finally:
+                try:ImageFont.truetype(str(new_font), 15)
+                except:ui.fontComboBox.removeItem(x)
+                        #else:
+
+
+
+
+                    #for i in ["light", "regular", "medium", "semibold", "semilight"]
                     #if self.fontComboBox.itemText(x)
-                    print(pathlib.Path(font_manager.findfont(self.fontComboBox.itemText(x))).parts[-1])
+                    #print(font_manager.findfont(self.fontComboBox.itemText(x)))
+                    #print(pathlib.Path(font_manager.findfont(self.fontComboBox.itemText(x))).parts[:-1])
 
 
                     # start working here, we need a thing that allows us to see if the troubbled fonts include a semi light or light or bold or whatever
@@ -1526,7 +1562,7 @@ ui.setupUi(MainWindow)
 class autostart:
     def auto(self):
         ui.checkBoxAutoProcess.setChecked(True)
-        #ui.remove_bad_font()
+        ui.remove_bad_font()
     def setup(self):
         ui.tabWidget.setCurrentWidget(ui.tabSetup)
 
