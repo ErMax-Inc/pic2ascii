@@ -1480,57 +1480,60 @@ class Ui_MainWindow(object):
 
     def remove_bad_font(self):
         list_of_font_index={}
-        x=0
+        self.fontComboBox.removeItem(0)
+        x=1
         while self.fontComboBox.itemText(x) != '':
-            try:new_font = font_manager.findfont(self.fontComboBox.itemText(x))
+            try:font_manager.findfont(self.fontComboBox.itemText(x))
+            #print(font_manager.findfont(self.fontComboBox.itemText(x)))
+            #input(os.name + self.fontComboBox.itemText(x))
             except:
                 self.fontComboBox.removeItem(x)
-                continue
+                x-=1
             else:
                 if font_manager.findfont(self.fontComboBox.itemText(x), rebuild_if_missing=False)[-14:].lower().rfind("dejavusans") != -1 and self.fontComboBox.itemText(x).lower().find("dejavusans") == -1:
                     if os.name == 'posix':  #fclist is not a windows so put all of the `fclist` stuff in here
-                        print([pathlib.Path(x.file).parts[-1] for x in tuple(fclist(fontformat=self.fontComboBox.itemText(x)))])#pathlib.Path(tuple(fclist(family=self.fontComboBox.itemText(x)))[0].file).parts[-1:])
-                        print([pathlib.Path(x.file).parts[-1] for x in tuple(fclist(family=self.fontComboBox.itemText(x)))])
+                        # print("linux")
+                        # print([pathlib.Path(x.file).parts[-1] for x in tuple(fclist(fullname=self.fontComboBox.itemText(x)))])#pathlib.Path(tuple(fclist(family=self.fontComboBox.itemText(x)))[0].file).parts[-1:])
+                        # print([pathlib.Path(x.file).parts[-1] for x in tuple(fclist(family=self.fontComboBox.itemText(x)))])
+                        # print(bool(not tuple(fclist(fullname=self.fontComboBox.itemText(x)))), bool(not tuple(fclist(family=self.fontComboBox.itemText(x)))))
                         if not tuple(fclist(fullname=self.fontComboBox.itemText(x))):
                             if not tuple(fclist(family=self.fontComboBox.itemText(x))):
-                                ui.fontComboBox.removeItem(x)
+                                self.fontComboBox.removeItem(x)
+                                #x+=1
                                 continue
                             else:
+                                append_temp = []
                                 for filei in fclist(family=self.fontComboBox.itemText(x)):
-                                    pass
-                                    
-                                    #guess here we would find which font is the best fitting
-                                    #if pathlib.Path(filei.family).parts[:-1].find
+                                    try:
+                                        ImageFont.truetype(filei.file, 12)
+                                    except:pass
+                                    else:
+                                        append_temp.append(filei.file)
+                                if not append_temp:
+                                    self.fontComboBox.removeItem(x)
+                                    #x+=1
+                                    continue
+                                append_temp2 = append_temp.copy()
+                                for filei in append_temp[:]:
+                                    if pathlib.Path(filei).parts[-1].lower().find('r') == -1:append_temp.remove(filei)
+                                if not append_temp:
+                                    new_font = append_temp2[0]
+                                else:
+                                    new_font = append_temp[0]
+                                del append_temp, append_temp2
                         else:
                             try:ImageFont.truetype(tuple(fclist(fullname=self.fontComboBox.itemText(x)))[0].file, 15)
                             except:new_font = tuple(fclist(fullname=self.fontComboBox.itemText(x)))[-1].file
                             else:new_font = tuple(fclist(fullname=self.fontComboBox.itemText(x)))[0].file
                             #use the [-1] index for appending to list
-            finally:
-                try:ImageFont.truetype(str(new_font), 15)
-                except:ui.fontComboBox.removeItem(x)
-                        #else:
-
-
-
-
-                    #for i in ["light", "regular", "medium", "semibold", "semilight"]
-                    #if self.fontComboBox.itemText(x)
-                    #print(font_manager.findfont(self.fontComboBox.itemText(x)))
-                    #print(pathlib.Path(font_manager.findfont(self.fontComboBox.itemText(x))).parts[:-1])
-
-
-                    # start working here, we need a thing that allows us to see if the troubbled fonts include a semi light or light or bold or whatever
-                    # we can see if there is a font file like that somewhere in the directory. if not then just remove it from the combo box.
-                    #
-                    #
-                    # I didn't put this in a comment because I wanted the program to error out so you know what to work on next.
-                    #
-                    # If you comment out these lines, the program should work fine (at least the stuff that is coded for)
-
-
-                    #if self.fontComboBox.itemText(x).rfind()
-            #list_of_font_index.append(self.fontComboBox.itemText(x))
+                else:new_font = font_manager.findfont(self.fontComboBox.itemText(x))
+            try:
+                #print(x, egx)
+                ImageFont.truetype(str(new_font), 15)
+            except:
+                self.fontComboBox.removeItem(x)
+                x-=1
+            print(x)
             x += 1
 
 
