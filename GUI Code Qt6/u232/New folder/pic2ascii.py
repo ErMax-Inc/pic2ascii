@@ -118,7 +118,7 @@ class Ui_MainWindow(object):
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
         MainWindow.setMouseTracking(False)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("C:\\Users\\annab\\pic2ascii\\GUI Code Qt6\\u232\\rva (don\'t touch unless, know wha yo doi\'n)\\../../../../../.designer/backup/Untitled.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon.addPixmap(QtGui.QPixmap("../../../../../.designer/backup/Untitled.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setWindowOpacity(1.0)
         MainWindow.setIconSize(QtCore.QSize(24, 24))
@@ -266,7 +266,6 @@ class Ui_MainWindow(object):
         self.lineEditInDir.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.IBeamCursor))
         self.lineEditInDir.setMouseTracking(False)
         self.lineEditInDir.setToolTipDuration(0)
-        self.lineEditInDir.setStyleSheet("background-color: rgb(245, 245, 245);")
         self.lineEditInDir.setText("")
         self.lineEditInDir.setFrame(True)
         self.lineEditInDir.setReadOnly(True)
@@ -295,7 +294,6 @@ class Ui_MainWindow(object):
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.lineEditOutDir.setFont(font)
         self.lineEditOutDir.setToolTipDuration(0)
-        self.lineEditOutDir.setStyleSheet("background-color: rgb(245, 245, 245);")
         self.lineEditOutDir.setText("")
         self.lineEditOutDir.setReadOnly(True)
         self.lineEditOutDir.setObjectName("lineEditOutDir")
@@ -381,7 +379,6 @@ class Ui_MainWindow(object):
         self.lineEdit.setFont(font)
         self.lineEdit.setToolTipDuration(0)
         self.lineEdit.setAutoFillBackground(False)
-        self.lineEdit.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.lineEdit.setFrame(True)
         self.lineEdit.setReadOnly(True)
         self.lineEdit.setObjectName("lineEdit")
@@ -403,13 +400,12 @@ class Ui_MainWindow(object):
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.lineEdit_2.setFont(font)
         self.lineEdit_2.setToolTipDuration(0)
-        self.lineEdit_2.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.lineEdit_2.setFrame(True)
         self.lineEdit_2.setReadOnly(True)
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.checkBoxAutoProcess = QtWidgets.QCheckBox(self.tabSetup)
         self.checkBoxAutoProcess.setEnabled(True)
-        self.checkBoxAutoProcess.setGeometry(QtCore.QRect(140, 130, 51, 17))
+        self.checkBoxAutoProcess.setGeometry(QtCore.QRect(130, 130, 61, 17))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
@@ -420,12 +416,11 @@ class Ui_MainWindow(object):
         self.lineEditProcess = QtWidgets.QLineEdit(self.tabSetup)
         self.lineEditProcess.setEnabled(True)
         self.lineEditProcess.setGeometry(QtCore.QRect(200, 130, 66, 20))
-        self.lineEditProcess.setStyleSheet("background-color: rgb(245, 245, 245);\n"
-"")
+        self.lineEditProcess.setStyleSheet("")
         self.lineEditProcess.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
         self.lineEditProcess.setObjectName("lineEditProcess")
         self.lineEditChar = QtWidgets.QLineEdit(self.tabSetup)
-        self.lineEditChar.setGeometry(QtCore.QRect(185, 246, 471, 26))
+        self.lineEditChar.setGeometry(QtCore.QRect(183, 262, 471, 26))
         font = QtGui.QFont()
         font.setPointSize(10)
         font.setBold(False)
@@ -433,10 +428,9 @@ class Ui_MainWindow(object):
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.lineEditChar.setFont(font)
         self.lineEditChar.setAutoFillBackground(False)
-        self.lineEditChar.setStyleSheet("background-color: rgb(245, 245, 245);")
         self.lineEditChar.setObjectName("lineEditChar")
         self.label_4 = QtWidgets.QLabel(self.tabSetup)
-        self.label_4.setGeometry(QtCore.QRect(2, 244, 181, 24))
+        self.label_4.setGeometry(QtCore.QRect(0, 260, 181, 24))
         font = QtGui.QFont()
         font.setPointSize(11)
         font.setBold(False)
@@ -479,7 +473,6 @@ class Ui_MainWindow(object):
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.lineEditCharWidth.setFont(font)
         self.lineEditCharWidth.setAutoFillBackground(False)
-        self.lineEditCharWidth.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.lineEditCharWidth.setObjectName("lineEditCharWidth")
         self.lineEditCharHeight = QtWidgets.QLineEdit(self.tabSetup)
         self.lineEditCharHeight.setGeometry(QtCore.QRect(105, 345, 56, 21))
@@ -490,10 +483,9 @@ class Ui_MainWindow(object):
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.lineEditCharHeight.setFont(font)
         self.lineEditCharHeight.setAutoFillBackground(False)
-        self.lineEditCharHeight.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.lineEditCharHeight.setObjectName("lineEditCharHeight")
         self.pushButtonCharWidthReset = QtWidgets.QPushButton(self.tabSetup)
-        self.pushButtonCharWidthReset.setGeometry(QtCore.QRect(165, 302, 26, 26))
+        self.pushButtonCharWidthReset.setGeometry(QtCore.QRect(165, 302, 31, 26))
         font = QtGui.QFont()
         font.setPointSize(17)
         font.setBold(False)
@@ -502,7 +494,7 @@ class Ui_MainWindow(object):
         self.pushButtonCharWidthReset.setFont(font)
         self.pushButtonCharWidthReset.setObjectName("pushButtonCharWidthReset")
         self.pushButtonCharHeightReset = QtWidgets.QPushButton(self.tabSetup)
-        self.pushButtonCharHeightReset.setGeometry(QtCore.QRect(165, 345, 26, 26))
+        self.pushButtonCharHeightReset.setGeometry(QtCore.QRect(165, 345, 31, 26))
         font = QtGui.QFont()
         font.setPointSize(17)
         font.setBold(False)
@@ -511,7 +503,7 @@ class Ui_MainWindow(object):
         self.pushButtonCharHeightReset.setFont(font)
         self.pushButtonCharHeightReset.setObjectName("pushButtonCharHeightReset")
         self.pushButtonCharReset = QtWidgets.QPushButton(self.tabSetup)
-        self.pushButtonCharReset.setGeometry(QtCore.QRect(660, 245, 26, 26))
+        self.pushButtonCharReset.setGeometry(QtCore.QRect(658, 261, 31, 26))
         font = QtGui.QFont()
         font.setPointSize(17)
         font.setBold(False)
@@ -520,7 +512,7 @@ class Ui_MainWindow(object):
         self.pushButtonCharReset.setFont(font)
         self.pushButtonCharReset.setObjectName("pushButtonCharReset")
         self.fontTabWidget = QtWidgets.QTabWidget(self.tabSetup)
-        self.fontTabWidget.setGeometry(QtCore.QRect(0, 180, 381, 61))
+        self.fontTabWidget.setGeometry(QtCore.QRect(0, 180, 381, 71))
         self.fontTabWidget.setAutoFillBackground(False)
         self.fontTabWidget.setMovable(True)
         self.fontTabWidget.setObjectName("fontTabWidget")
@@ -840,8 +832,8 @@ class Ui_MainWindow(object):
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.commandLinkButton.setFont(font)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("C:\\Users\\annab\\pic2ascii\\GUI Code Qt6\\u232\\rva (don\'t touch unless, know wha yo doi\'n)\\../../../../../.designer/backup/x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
-        icon1.addPixmap(QtGui.QPixmap("C:\\Users\\annab\\pic2ascii\\GUI Code Qt6\\u232\\rva (don\'t touch unless, know wha yo doi\'n)\\../../../../../.designer/backup/check.png"), QtGui.QIcon.Mode.Active, QtGui.QIcon.State.On)
+        icon1.addPixmap(QtGui.QPixmap("../../../../../.designer/backup/x.png"), QtGui.QIcon.Mode.Normal, QtGui.QIcon.State.Off)
+        icon1.addPixmap(QtGui.QPixmap("../../../../../.designer/backup/check.png"), QtGui.QIcon.Mode.Active, QtGui.QIcon.State.On)
         self.commandLinkButton.setIcon(icon1)
         self.commandLinkButton.setIconSize(QtCore.QSize(34, 34))
         self.commandLinkButton.setCheckable(True)
@@ -857,7 +849,6 @@ class Ui_MainWindow(object):
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.lineEdit_3.setFont(font)
         self.lineEdit_3.setAutoFillBackground(False)
-        self.lineEdit_3.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.lineEdit_3.setReadOnly(True)
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.pushButtonColor = QtWidgets.QPushButton(self.tabAdvanced)
@@ -875,7 +866,6 @@ class Ui_MainWindow(object):
         font.setStyleStrategy(QtGui.QFont.StyleStrategy.PreferAntialias)
         self.lineEdit_4.setFont(font)
         self.lineEdit_4.setAutoFillBackground(False)
-        self.lineEdit_4.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.lineEdit_4.setReadOnly(True)
         self.lineEdit_4.setObjectName("lineEdit_4")
         self.label_5 = QtWidgets.QLabel(self.tabAdvanced)
@@ -1199,7 +1189,7 @@ class Ui_MainWindow(object):
         self.tabFinish = QtWidgets.QWidget()
         self.tabFinish.setObjectName("tabFinish")
         self.whatToDo = QtWidgets.QComboBox(self.tabFinish)
-        self.whatToDo.setGeometry(QtCore.QRect(5, 290, 241, 21))
+        self.whatToDo.setGeometry(QtCore.QRect(5, 280, 251, 31))
         self.whatToDo.setEditable(False)
         self.whatToDo.setMaxVisibleItems(10)
         self.whatToDo.setDuplicatesEnabled(False)
@@ -1212,7 +1202,7 @@ class Ui_MainWindow(object):
         self.stop.setGeometry(QtCore.QRect(5, 319, 111, 31))
         self.stop.setObjectName("stop")
         self.start = QtWidgets.QPushButton(self.tabFinish)
-        self.start.setGeometry(QtCore.QRect(135, 319, 111, 31))
+        self.start.setGeometry(QtCore.QRect(140, 320, 111, 31))
         self.start.setAutoFillBackground(False)
         self.start.setStyleSheet("")
         self.start.setObjectName("start")
@@ -1231,7 +1221,7 @@ class Ui_MainWindow(object):
         self.progressBar.setTextDirection(QtWidgets.QProgressBar.Direction.TopToBottom)
         self.progressBar.setObjectName("progressBar")
         self.widget = QtWidgets.QWidget(self.tabFinish)
-        self.widget.setGeometry(QtCore.QRect(260, 5, 716, 361))
+        self.widget.setGeometry(QtCore.QRect(260, 10, 716, 361))
         self.widget.setObjectName("widget")
         self.textBrowser = QtWidgets.QTextBrowser(self.widget)
         self.textBrowser.setGeometry(QtCore.QRect(0, 0, 256, 192))
@@ -1239,7 +1229,7 @@ class Ui_MainWindow(object):
         self.tabWidget.addTab(self.tabFinish, "")
         MainWindow.setCentralWidget(self.widgetMain)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 985, 21))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 985, 30))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -1294,11 +1284,11 @@ class Ui_MainWindow(object):
         self.textEdit.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'MS Shell Dlg 2\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20pt;\">Release Notes</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt;\">pic2ascii is an open source app run by the ErMax.Inc comunity. Pic2ascii can turn regular pictures into ascii characters with detail (or no detail) and </span><span style=\" font-size:9pt; color:#ff0000;\">c</span><span style=\" font-size:9pt; color:#ffaa00;\">o</span><span style=\" font-size:9pt; color:#a2a200;\">l</span><span style=\" font-size:9pt; color:#00aa00;\">o</span><span style=\" font-size:9pt; color:#0055ff;\">r</span><span style=\" font-size:9pt; color:#aa00ff;\">. </span><span style=\" font-size:9pt; color:#000000;\">You can also control various peramitars like the scale factor of the characters, the font and even the characters themself. At the moment, pic2ascii only suports the .jpg as an input format and both jpg and .png as an output format but that may change in the future. For now please enjoy the comunity\'s software.</span></p>\n"
+"</style></head><body style=\" font-family:\'Noto Sans\'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:20pt;\">Release Notes</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt;\">pic2ascii is an open source app run by the ErMax.Inc comunity. Pic2ascii can turn regular pictures into ascii characters with detail (or no detail) and </span><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; color:#ff0000;\">c</span><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; color:#ffaa00;\">o</span><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; color:#a2a200;\">l</span><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; color:#00aa00;\">o</span><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; color:#0055ff;\">r</span><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; color:#aa00ff;\">. </span><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; color:#000000;\">You can also control various peramitars like the scale factor of the characters, the font and even the characters themself. At the moment, pic2ascii only suports the .jpg as an input format and both jpg and .png as an output format but that may change in the future. For now please enjoy the comunity\'s software.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Yu Gothic UI\'; font-size:8.25pt;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:9pt; color:#000000;\">    --ErMax Team</span></p></body></html>"))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-size:9pt; color:#000000;\">    --ErMax Team</span></p></body></html>"))
         self.pushButton.setText(_translate("MainWindow", "Setup"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabHome), _translate("MainWindow", "Home"))
         self.tabWidget.setTabToolTip(self.tabWidget.indexOf(self.tabHome), _translate("MainWindow", "This is the Home Tab"))
@@ -1565,7 +1555,7 @@ ui.setupUi(MainWindow)
 class autostart:
     def auto(self):
         ui.checkBoxAutoProcess.setChecked(True)
-        ui.remove_bad_font()
+        #ui.remove_bad_font()
     def setup(self):
         ui.tabWidget.setCurrentWidget(ui.tabSetup)
 
@@ -2024,8 +2014,11 @@ class pta:
             else:
                 format = 'RGB'
             #print(str(os.getcwd() + os.sep() + 'font' + os.sep() + 'anonymouspro.ttf'))
-            
-            fnt = ImageFont.truetype(str('C:\\Windows\\Fonts\\arial.ttf'), 15)
+
+            if os.name == 'nt':
+                fnt = ImageFont.truetype('C:\\Windows\\Fonts\\arial.ttf', 15)
+            else:
+                fnt = ImageFont.truetype(tuple(fclist(fullname='Arial'))[0].file, 15)
 
 
             width, height = im.size
