@@ -54,7 +54,7 @@ from threading import Thread
 import picgen
 import psutil
 from more import isInt, isFloat
-from playsound import playsound
+from pygame import mixer
 #call_atrib and call_error (fine imports)
 from tkinter.filedialog import askdirectory as askdir
 from tkinter.filedialog import askopenfilenames, askopenfilename
@@ -64,8 +64,10 @@ from tkinter import messagebox
 from sty import fg
 
 
-from fclist import fclist
-
+try:from fclist import fclist
+except:
+    if os.name == 'posix':
+        raise ModuleNotFoundError("No module named 'fclist'")
 '''
 IMPORTANT: when using fclist install the fclist-cffi package as it is maintained 
 '''
@@ -1884,10 +1886,12 @@ class enable_disable:
 #########################################################
 
 class pta:   
+    #this function is soon to be deprecated (depricate it once monochrome is made unless it is used)
     def getMonochrome(self, rgb_color, rgb_value):
         r, g, b = tuple(rgb_color)
         rgb_temp = colorsys.rgb_to_hsv(r, g, b)
-    
+    ############################################
+
     def getChar(self, inputInt):
         #chars = '''$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'. '''[::-1]
         chars = str(ui.lineEditChar.text())
@@ -1922,7 +1926,7 @@ class pta:
                 ui.progressBar_2.setValue(0)
                 ui.progressBar_3.setValue(0)
                 ui.progressBar_4.setValue(0)
-                playsound(f"sounds{os.sep}stop.wav", True)
+                #playsound(f"sounds{os.sep}stop.wav", True)
                 #print("\a")
                 print("stopped_processes")
                 break
@@ -1945,7 +1949,7 @@ class pta:
                     ui.progressBar_4.setEnabled(True)
                 try:shutil.rmtree(str(os.getcwd()) + str(os.sep) + 'pic2asciitemp')
                 except:print("rm_temp_error")
-                playsound(f"sounds{os.sep}done.wav", True)
+                #playsound(f"sounds{os.sep}done.wav", True)
                 break
             else:
                 #print(str(math.floor(float(progress.value / len_file_path_list) * 100)))
@@ -1958,7 +1962,7 @@ class pta:
     
             
     def main(self, execing, file_path_list, folder_out_path, pre_fnt, scaleFactor, processes, monochrome, progress, lock):
-        import asyncio
+        #import asyncio
         #chars = '''$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'. '''[::-1]
         chars = str(ui.lineEditChar.text())
 
@@ -2042,36 +2046,31 @@ class pta:
             
             for i in range(height):
                 for j in range(width):
-                    print(i)
+                    #print(i)
                     if format == 'RGBA':
                         r, g, b, a = pix.getpixel((j, i))
                     elif format == 'RGB':
                         r, g, b = pix.getpixel((j, i))
                     #r, g, b = pix[j, i]
                     h = int(r/3 + g/3 + b/3)
-                    #pix.getpixel((j, i)) = (h, h, h)#line no work nomore
+                    #pix.getpixel((j, i)) = (h, h, h)#this line doesn't work anymore
                     text_file.write(str(self.getChar(h)).encode('utf-8'))
                     tf.write(str(str(fg(r, g, b)) + str(self.getChar(h))).encode('utf-8'))
-                    #
-                    ##  add this in as soon as the monochrome function/module is implemented
-                    ###
-                    ####if monochrome:
-                    ####    mr, mg, mb = getMonochrome((r, g, b), h)
-                    ###
-                    ##
-                    #
-                    if format == 'RGBA':
-                        d.text((math.ceil(int(j*oneCharWidth)), math.ceil(int(i*oneCharHeight))), self.getChar(h), font = fnt, fill = (int(r), int(g), int(b), int(a)))
-                    elif format == 'RGB':
-                        d.text((math.ceil(int(j*oneCharWidth)), math.ceil(int(i*oneCharHeight))), self.getChar(h), font = fnt, fill = (int(r), int(g), int(b)))
-                    try:
-                        pass
-                        #print(fg(r, g, b) + str(self.getChar(h)), end='') #please don't put fg.rs into the code or it will slow down a lot
-                    except:
-                        #try:
-                        #    print(str(self.getChar(h)), end='')
-                        #except:
-                        #    print('?', end='')
+                    if ui.commandLinkButton.isChecked() == False:
+                        if format == 'RGBA':
+                            d.text((math.ceil(int(j*oneCharWidth)), math.ceil(int(i*oneCharHeight))), self.getChar(h), font = fnt, fill = (int(r), int(g), int(b), int(a)))
+                        elif format == 'RGB':
+                            d.text((math.ceil(int(j*oneCharWidth)), math.ceil(int(i*oneCharHeight))), self.getChar(h), font = fnt, fill = (int(r), int(g), int(b)))
+                        try:
+                            pass
+                            #print(fg(r, g, b) + str(self.getChar(h)), end='') #please don't put fg.rs into the code or it will slow down a lot
+                        except:
+                            #try:
+                            #    print(str(self.getChar(h)), end='')
+                            #except:
+                            #    print('?', end='')
+                            pass
+                    else:
                         pass
                 tf.write('\n'.encode('utf-8'))
                 text_file.write('\n'.encode('utf-8'))
@@ -2132,7 +2131,7 @@ class pta:
                 #I did some reaserch and figured out that .join() is for allready (not in function) tasks
             o = Thread(target=self.pbud, args=(len(file_path_list), progress, ps_list))
             o.start()
-            playsound(f"sounds{os.sep}stop.wav", True)
+            #playsound(f"sounds{os.sep}start.wav", True)
 
     def stopping_pic(self):
         global stop_pressed
