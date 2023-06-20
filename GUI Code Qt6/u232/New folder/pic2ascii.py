@@ -54,7 +54,7 @@ from threading import Thread
 import picgen
 import psutil
 from more import isInt, isFloat
-from pygame import mixer
+#from pygame import mixer
 #call_atrib and call_error (fine imports)
 from tkinter.filedialog import askdirectory as askdir
 from tkinter.filedialog import askopenfilenames, askopenfilename
